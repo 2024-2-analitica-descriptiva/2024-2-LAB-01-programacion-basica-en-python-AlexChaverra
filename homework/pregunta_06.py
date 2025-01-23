@@ -26,3 +26,25 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    list = {}
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+        
+        for line in lines:
+            colums = line.split("\t")
+            colum_5 = colums[4].split(",")
+
+            for item in colum_5:
+                i = item.split(":")
+                key = i[0]
+                value = int(i[1])
+                
+                if key in list:
+                    list[key].append(value)
+                else: 
+                    list[key] = [value]
+        result = sorted([(key, min(values), max(values)) for key, values in list.items()])
+        
+    return result
+
+print(pregunta_06())

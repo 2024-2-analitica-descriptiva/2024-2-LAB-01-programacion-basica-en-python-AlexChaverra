@@ -15,3 +15,21 @@ def pregunta_05():
     [('A', 9, 2), ('B', 9, 1), ('C', 9, 0), ('D', 8, 3), ('E', 9, 1)]
 
     """
+    list = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            columns = line.strip().split("\t")
+            letra = columns[0]
+            value = int(columns[1])
+            if letra in list:
+                list[letra][0] = max(list[letra][0], value)
+                list[letra][1] = min(list[letra][1], value)
+            else:
+                list[letra] = [value, value]
+    result = [
+    (letra, values[0], values[1])
+    for letra, values in sorted(list.items())
+]
+    return result
+
+print("Lista de tuplas:", pregunta_05())

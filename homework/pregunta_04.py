@@ -6,7 +6,7 @@ utilizar pandas, numpy o scipy.
 """
 
 
-def pregunta_04():
+def pregunta_04():    
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la
     cantidad de registros por cada mes, tal como se muestra a continuación.
@@ -26,3 +26,18 @@ def pregunta_04():
      ('12', 3)]
 
     """
+
+    list_month = {}
+    with open("files/input/data.csv", "r") as file:
+        for line in file:
+            date = line.strip().split("\t")[2]
+            current = date.split("-")[1]
+            if current in list_month:
+                list_month[current] += 1
+            else:
+                list_month[current] = 1
+    result = sorted(list_month.items())
+    return result
+
+for month, number in pregunta_04():
+    print(f"('{month}', {number})")

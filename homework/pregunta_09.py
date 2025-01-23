@@ -24,3 +24,22 @@ def pregunta_09():
      'jjj': 18}}
 
     """
+
+    list = {}
+    with open("files/input/data.csv", "r") as file:
+        lines = file.readlines()
+
+    for line in lines:
+        columns = line.split()
+        codes = columns[4].split(",")
+
+        for item in codes:
+            key = item.split(":")[0]
+
+            if key not in list:
+                list[key] = 0
+            list[key] += 1
+
+    return dict(sorted(list.items()))
+
+print(pregunta_09())

@@ -15,3 +15,15 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    list = {}
+    with open("files/input/data.csv", "r",) as file:
+        for line in file:
+            letter = line.strip().split("\t")[0]
+            if letter in list:
+                list[letter] += 1
+            else:
+                list[letter] = 1
+    result = sorted(list.items())
+    return result
+
+print("Lista de tuplas:", pregunta_02())
